@@ -5,24 +5,10 @@
     if (!isset($_SESSION["login"])) {
         header("Location: ../login.php");
     }
-
-    if (isset($_SESSION['flash_message'])) {
-        $pesan = $_SESSION['flash_message'];
-        echo "<script>alert('$pesan');</script>";
-        
-        // Hapus session supaya alert tidak muncul terus-menerus
-        unset($_SESSION['flash_message']);
-    }
-
-    $peminjam = s_query("GET", "/rest/v1/tb_peminjaman?select=*");
-
+    
     if(isset($_POST["submit"])) {
         tambah($_POST);
         
-        // 2. Simpan pesan alert ke dalam SESSION (opsional, agar alert tetap muncul)
-        session_start();
-        $_SESSION['flash_message'] = $hasilPesan;
-
         // 3. REDIRECT ke halaman yang sama (ini kuncinya!)
         header("Location: dashboard.php"); 
         exit; // Wajib pakai exit setelah header location       
@@ -197,6 +183,7 @@
             </div>
 
             <form action="" method="post" class="p-6 md:p-8 space-y-6">
+                <input type="hidden" name="user_id" id="id" value="<?= $_SESSION["id"]; ?>">
                 <!-- Nama Peminjam field -->
                 <div class="space-y-2">
                     <label for="peminjam"
@@ -206,11 +193,12 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
-                        Nama lengkap peminjam
+                        Peminjam
                     </label>
-                    <input type="text" name="peminjam" id="peminjam" required
+                    <input type="text" name="peminjam" id="peminjam" readonly
                         class="w-full px-5 py-3 border border-gray-700 rounded-xl focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 transition-all duration-200 bg-gray-800/50 hover:bg-gray-800 text-gray-100 placeholder-gray-500"
-                        placeholder="contoh: Ahmad Fauzan">
+                        value="<?= $_SESSION['username']; ?>">
+                    <p class="text-xs text-gray-500 mt-1">*Otomatis sesuai akun login</p>
                 </div>
 
                 <!-- Durasi pinjam (menit) -->

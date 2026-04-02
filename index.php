@@ -6,19 +6,23 @@
     $users = s_query("GET", "/rest/v1/tb_users?select=*");
 
     if (isset($_POST["submit"])) {
-
+        
         if (verify($_POST)) {
-
+            
             $_SESSION["login"] = true;
             $_SESSION["username"] = $_POST["username"];
             $_SESSION["id"] = $_POST["id"];
-
+            
+            $users = s_query("POST", "/rest/v1/tb_users?select=*");
             header("Location: ./public/users/dashboard.php");
         } else {
             $error = true;
         }
     }
 
+    $nonAdminUsers = array_filter($users, function($user) {
+        return $user['role'] !== 'admin'; 
+    });
 ?>
 
 <!DOCTYPE html>
@@ -139,10 +143,10 @@
     <div class="container max-w-2xl w-full mx-auto">
 
         <!-- Tambahkan di dalam div id="card-data" sebelum akhir </div> -->
-        <?php if(!empty($users) && $users[0]["role"] !== "admin"): ?>
+        <?php if(!empty($nonAdminUsers)) : ?>
         <?php foreach($users as $row) : ?>
-        <?php if( $row["role"] !== "admin" ): ?>
-        <h1 class="text-white text-center text-2xl mb-8">Siapa yang mau pinjam?</h1>
+        <?php if($row["role"] !== "admin") : ?>
+        <h1 class="text-white text-center text-2xl mb-8 mt-4">Siapa yang mau pinjam?</h1>
         <div class="profileCard max-w-xs mx-auto mb-4 bg-gray-900 hover:bg-gray-800 rounded-lg shadow-lg cursor-pointer animate-fade-in"
             onclick="openModal('<?= $row['id']; ?>', '<?= $row['username']; ?>')">
             <div class="p-4 flex items-center space-x-4 gap-2">

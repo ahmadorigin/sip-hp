@@ -5,7 +5,7 @@
     $supabaseKey = "sb_publishable_z83sd2gzkxijRQZISaeMAA_a4O3hsCc";
     
     function s_query($method, $endPoint, $data = null) {
-        global $supabaseUrl, $supabaseKey;
+        global $supabaseUrl, $supabaseKey;  
 
         $ch = curl_init($supabaseUrl . $endPoint);
 
@@ -69,6 +69,7 @@
 
         // menambah data
         $dataFilter = [
+            "user_id" => $data["user_id"],
             "peminjam" => $data["peminjam"],
             "durasi" => $data["durasi-pinjam"],
             "alasan" => $data["alasan"],

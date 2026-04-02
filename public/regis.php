@@ -2,7 +2,7 @@
  
      require '../src/php/functions.php';
 
-     if(isset($_POST["register"])) {
+    if(isset($_POST["register"])) {
         if (registrasi($_POST) === true) {
             header("Location: login.php"); 
         } else {
