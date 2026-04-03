@@ -156,24 +156,21 @@
         <?php if(!empty($peminjam)): ?>
         <?php foreach($peminjam as $row) : ?>
         <div class="mt-5 transition-all duration-500 animate-fade-in">
-            <div
-                class="bg-gray-900 border-l-4 rounded-xl shadow-lg overflow-hidden border border-gray-800 relative transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-indigo-500/50">
+            <div class="bg-gray-900 border-l-4 rounded-xl shadow-lg overflow-hidden border border-gray-800 relative ">
 
                 <div class="p-5">
                     <!-- Header Card dengan Avatar dan Badge Status yang Lebih Menonjol -->
                     <div class="flex items-start justify-between mb-4">
                         <div class="flex items-center gap-3">
-                            <div
-                                class="h-10 w-10 rounded-full bg-indigo-500/20 flex items-center justify-center transition-all duration-300 group-hover:bg-indigo-500/30 group-hover:scale-105">
-                                <svg class="w-5 h-5 text-indigo-400 transition-all duration-300 group-hover:text-indigo-300"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="h-10 w-10 rounded-full bg-indigo-500/20 flex items-center justify-center ">
+                                <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                                 </svg>
                             </div>
                             <div>
-                                <h3
-                                    class="text-gray-100 font-semibold text-lg transition-colors duration-300 group-hover:text-indigo-300">
+                                <h3 class="text-gray-100 font-semibold text-lg ">
                                     <?= htmlspecialchars($row["peminjam"]) ?></h3>
                             </div>
                         </div>
@@ -211,8 +208,7 @@
                     </div>
 
                     <!-- Box Inner untuk Detail Peminjaman -->
-                    <div
-                        class="bg-gray-800/50 rounded-lg p-4 mb-4 border border-gray-700/50 transition-all duration-300 group-hover:bg-gray-800/70 group-hover:border-gray-600/50">
+                    <div class="bg-gray-800/50 rounded-lg p-4 mb-4 border border-gray-700/50 ">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="space-y-2">
                                 <div class="flex items-start gap-2">
@@ -268,7 +264,7 @@
 
                         <a href="../ubah.php?id=<?= $row["id"]; ?>">
                             <button
-                                class="cursor-pointer flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2 px-3 rounded-lg shadow-md transition-all duration-300 active:scale-95 hover:scale-105 hover:shadow-lg">
+                                class="cursor-pointer flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2 px-3 rounded-lg shadow-md">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">

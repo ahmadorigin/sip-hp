@@ -142,11 +142,11 @@
 
     <div class="container max-w-2xl w-full mx-auto">
 
+        <h1 class="text-white text-center text-2xl mb-8 mt-4">Siapa yang mau pinjam?</h1>
         <!-- Tambahkan di dalam div id="card-data" sebelum akhir </div> -->
         <?php if(!empty($nonAdminUsers)) : ?>
         <?php foreach($users as $row) : ?>
         <?php if($row["role"] !== "admin") : ?>
-        <h1 class="text-white text-center text-2xl mb-8 mt-4">Siapa yang mau pinjam?</h1>
         <div class="profileCard max-w-xs mx-auto mb-4 bg-gray-900 hover:bg-gray-800 rounded-lg shadow-lg cursor-pointer animate-fade-in"
             onclick="openModal('<?= $row['id']; ?>', '<?= $row['username']; ?>')">
             <div class="p-4 flex items-center space-x-4 gap-2">

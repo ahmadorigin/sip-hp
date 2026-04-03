@@ -163,9 +163,16 @@
                         </svg>
                         Alasan peminjaman
                     </label>
+                    <?php if(isset($_SESSION["admin"])) : ?>
+                    <input type="text" name="alasan" id="alasan" readonly
+                        class="w-full px-5 py-3 border border-gray-700 rounded-xl focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 transition-all duration-200 bg-gray-800/50 hover:bg-gray-800 text-gray-100 placeholder-gray-500"
+                        value="<?= htmlspecialchars($row["alasan"]); ?>">
+                    <?php else : ?>
+
                     <input type="text" name="alasan" id="alasan" required
                         class="w-full px-5 py-3 border border-gray-700 rounded-xl focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 transition-all duration-200 bg-gray-800/50 hover:bg-gray-800 text-gray-100 placeholder-gray-500"
                         value="<?= htmlspecialchars($row["alasan"]); ?>">
+                    <?php endif; ?>
                 </div>
 
                 <!-- Tombol submit dengan efek modern -->
