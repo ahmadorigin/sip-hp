@@ -23,6 +23,8 @@
     $nonAdminUsers = array_filter($users, function($user) {
         return $user['role'] !== 'admin'; 
     });
+
+    $page_title = "index";
 ?>
 
 <!DOCTYPE html>
@@ -71,74 +73,7 @@
 
 <body class="bg-gray-950 ">
 
-    <header class="border-b border-gray-800 bg-gray-900/95 rounded-b-2xl backdrop-blur-sm sticky top-0 z-50">
-        <div class="px-4 sm:px-6 lg:px-8">
-            <nav class="bg-gray-900 border-b border-gray-800 sticky top-0 z-50">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between items-center h-16">
-                        <!-- Logo -->
-                        <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center">
-                                <span class="text-white text-sm font-bold">H</span>
-                            </div>
-                            <span class="text-gray-100 font-semibold">SIP-HP</span>
-                        </div>
-
-                        <!-- Desktop Menu (hidden on mobile) -->
-                        <div class="hidden md:flex items-center gap-4 row-gap-2">
-                            <div class="flex items-center gap-3">
-                                <a href="./public/login.php"
-                                    class="text-indigo-400 hover:text-indigo-300 text-sm transition">Login</a>
-                                <a href="./public/regis.php"
-                                    class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm transition">
-                                    Daftar
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Mobile Menu Button (Hamburger) -->
-                        <button id="mobileMenuButton"
-                            class="md:hidden text-gray-300 hover:text-white focus:outline-none p-2 rounded-lg hover:bg-gray-800 transition">
-                            <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 6h16M4 12h16M4 18h16"></path>
-                            </svg>
-                            <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                        </button>
-                    </div>
-
-                    <!-- Mobile Dropdown Menu (hidden by default) -->
-                    <div id="mobileMenu"
-                        class="hidden md:hidden border-t border-gray-800 py-4 space-y-3 animate-fade-in transition-all duration-300">
-
-                        <!-- Menu Items Mobile -->
-                        <a href="./public/login.php"
-                            class="flex mb-2 items-center justify-center gap-2 px-4 py-3 text-indigo-400 border border-indigo-500/30 rounded-lg hover:bg-indigo-500/10 transition">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1">
-                                </path>
-                            </svg>
-                            <span>Login</span>
-                        </a>
-                        <a href="./public/regis.php"
-                            class="flex items-center justify-center gap-2 px-4 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
-                                </path>
-                            </svg>
-                            <span>Daftar</span>
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <?php include("./src/include/header.php"); ?>
 
     <div class="container max-w-2xl w-full mx-auto">
 
@@ -245,6 +180,8 @@
             </div>
         </div>
     </div>
+
+    <?php include("./src/include/footer.php"); ?>
 
     <script src="./src/js/verify.js"></script>
     <script src="./src/js/navbar.js"></script>

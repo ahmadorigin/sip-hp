@@ -7,7 +7,7 @@
     }
 
     $peminjam = s_query("GET", "/rest/v1/tb_peminjaman?user_id=eq." . $_SESSION["id"]);
-
+    $page_title = "dashboard-users";
 
 ?>
 
@@ -19,146 +19,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Sistem Peminjaman HP | SIP-HP</title>
     <link rel="stylesheet" href="../../src/css/output.css">
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
-
-    * {
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    }
-
-    input:focus,
-    button:focus {
-        outline: none;
-        ring: 2px solid #6366f1;
-    }
-
-    @keyframes fade-in {
-        from {
-            opacity: 0;
-            transform: translateY(12px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .animate-fade-in {
-        animation: fade-in 0.4s ease-out forwards;
-    }
-
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-        opacity: 0.5;
-    }
-    </style>
 </head>
 
 <body class="bg-gray-950 ">
 
+    <?php include("../../src/include/header.php"); ?>
+
     <!-- main container -->
-    <header class="border-b border-gray-800 bg-gray-900/95 rounded-b-2xl backdrop-blur-sm sticky top-0 z-50">
-        <div class="px-4 sm:px-6 lg:px-8">
-            <nav class="bg-gray-900 border-b border-gray-800 sticky top-0 z-50">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between items-center h-16">
-                        <!-- Logo -->
-                        <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center">
-                                <span class="text-white text-sm font-bold">H</span>
-                            </div>
-                            <span class="text-gray-100 font-semibold">SIP-HP</span>
-                        </div>
-
-                        <!-- Desktop Menu (hidden on mobile) -->
-                        <div class="hidden md:flex items-center gap-4 row-gap-2">
-                            <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center">
-                                    <span class="text-indigo-400 text-xs font-medium">
-                                        <?= substr($_SESSION['username'], 0, 2) ?>
-                                    </span>
-                                </div>
-                                <span
-                                    class="text-gray-300 text-sm"><?= htmlspecialchars($_SESSION['username']) ?></span>
-                                <a href="../logout.php"
-                                    class="text-red-400 hover:text-red-300 text-sm transition">Logout</a>
-                                <a href="form-izin.php" class="text-indigo-400 hover:bg-indigo-300 text-sm transition">
-                                    Form Izin
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Mobile Menu Button (Hamburger) -->
-                        <button id="mobileMenuButton"
-                            class="md:hidden text-gray-300 hover:text-white focus:outline-none p-2 rounded-lg hover:bg-gray-800 transition">
-                            <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 6h16M4 12h16M4 18h16"></path>
-                            </svg>
-                            <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                        </button>
-                    </div>
-
-                    <!-- Mobile Dropdown Menu (hidden by default) -->
-                    <div id="mobileMenu"
-                        class="hidden md:hidden border-t border-gray-800 py-4 space-y-3 transition-all duration-300">
-                        <!-- User Info Mobile -->
-                        <div class="flex items-center gap-3 px-2 py-2 bg-gray-800/50 rounded-lg">
-                            <div class="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center">
-                                <span class="text-indigo-400 text-sm font-medium">
-                                    <?= substr($_SESSION['username'], 0, 2) ?>
-                                </span>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-gray-200 text-sm font-medium">
-                                    <?= htmlspecialchars($_SESSION['username']) ?>
-                                </p>
-                                <p class="text-gray-500 text-xs">Online</p>
-                            </div>
-                        </div>
-
-                        <!-- Menu Items Mobile -->
-                        <a href="form-izin.php"
-                            class="flex items-center gap-3 px-4 py-3 text-indigo-400 hover:bg-gray-800 rounded-lg transition">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
-                                </path>
-                            </svg>
-                            <span>Form Izin</span>
-                        </a>
-                        <a href="../logout.php"
-                            class="flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-gray-800 rounded-lg transition">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
-                                </path>
-                            </svg>
-                            <span>Logout</span>
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
-
     <div id="card-data" class="max-w-2xl w-full mx-auto">
 
         <!-- header / brand section - dark mode version -->
         <div class="text-center mb-8 md:mb-10"></div>
 
+        <hr class="border-gray-800 mx-4 mb-6">
         <!-- Daftar Peminjaman -->
         <?php if(!empty($peminjam)): ?>
         <?php foreach($peminjam as $row) : ?>
+        <?php $borderColor = $row["status"] === "approved" ? 'border-indigo-500' : 'border-amber-500'; ?>
         <div class="mt-5 transition-all duration-500 animate-fade-in">
-            <div class="bg-gray-900 border-l-4 rounded-xl shadow-lg overflow-hidden border border-gray-800 relative ">
+            <div class="<?= $borderColor; ?> bg-gray-900 border-l-4 rounded-xl shadow-lg overflow-hidden relative ">
 
                 <div class="p-5">
+
                     <!-- Header Card dengan Avatar dan Badge Status yang Lebih Menonjol -->
                     <div class="flex items-start justify-between mb-4">
                         <div class="flex items-center gap-3">
@@ -170,13 +52,18 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-gray-100 font-semibold text-lg ">
-                                    <?= htmlspecialchars($row["peminjam"]) ?></h3>
+                                <h3 class="text-gray-100 font-bold text-base leading-tight">
+                                    Peminjaman Aktif
+                                </h3>
+                                <p class="text-gray-500 text-xs mt-1">
+                                    <?= date('d M Y', strtotime($row["created_at"])) ?> •
+                                    <?= date('H:i', strtotime($row["created_at"])) ?>
+                                </p>
                             </div>
                         </div>
 
                         <!-- Badge Status yang Lebih Menonjol - Diposisikan di pojok kanan -->
-                        <?php if($row["approved"]) : ?>
+                        <?php if($row["status"] === "approved") : ?>
                         <div class="relative">
                             <div
                                 class="flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-bold border border-emerald-500 shadow-lg backdrop-blur-sm">
@@ -247,7 +134,7 @@
 
                     <!-- Tombol Aksi -->
                     <div class="flex flex-wrap gap-2 items-center justify-center">
-                        <?php if($row["approved"]) : ?>
+                        <?php if($row["status"] === "approved") : ?>
                         <button data-menit="<?= $row["durasi"] ?>"
                             class="start-timer-btn cursor-pointer flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-3 rounded-lg shadow-md transition-all duration-300 active:scale-95 hover:scale-105 hover:shadow-lg">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -332,6 +219,8 @@
         </div>
         <?php endif; ?>
     </div>
+
+    <?php include("../../src/include/footer.php"); ?>
 
     <script src="../../src/js/navbar.js"></script>
     <script src="../../src/js/script.js"></script>

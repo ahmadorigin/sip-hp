@@ -13,6 +13,8 @@
         header("Location: dashboard.php"); 
         exit; // Wajib pakai exit setelah header location       
     }
+
+    $page_title = "form-izin";
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -23,34 +25,6 @@
     <title>Sistem Peminjaman HP | SIP-HP</title>
     <link rel="stylesheet" href="../../src/css/output.css">
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
-
-    * {
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    }
-
-    input:focus,
-    button:focus {
-        outline: none;
-        ring: 2px solid #6366f1;
-    }
-
-    @keyframes fade-in {
-        from {
-            opacity: 0;
-            transform: translateY(12px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .animate-fade-in {
-        animation: fade-in 0.4s ease-out forwards;
-    }
-
     .card-hover {
         transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
@@ -59,106 +33,14 @@
         transform: translateY(-4px);
         box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.3);
     }
-
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-        opacity: 0.5;
-    }
     </style>
 </head>
 
 <body class="bg-gray-950 ">
 
+    <?php include("../../src/include/header.php"); ?>
+
     <!-- main container -->
-    <header class="border-b border-gray-800 bg-gray-900/95 rounded-b-2xl backdrop-blur-sm sticky top-0 z-50">
-        <div class="px-4 sm:px-6 lg:px-8">
-            <nav class="bg-gray-900 border-b border-gray-800 sticky top-0 z-50">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between items-center h-16">
-                        <!-- Logo -->
-                        <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center">
-                                <span class="text-white text-sm font-bold">H</span>
-                            </div>
-                            <span class="text-gray-100 font-semibold">SIP-HP</span>
-                        </div>
-
-                        <!-- Desktop Menu (hidden on mobile) -->
-                        <div class="hidden md:flex items-center gap-4 row-gap-2">
-                            <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center">
-                                    <span class="text-indigo-400 text-xs font-medium">
-                                        <?= substr($_SESSION['username'], 0, 2) ?>
-                                    </span>
-                                </div>
-                                <span
-                                    class="text-gray-300 text-sm"><?= htmlspecialchars($_SESSION['username']) ?></span>
-                                <a href="../logout.php"
-                                    class="text-red-400 hover:text-red-300 text-sm transition">Logout</a>
-                                <a href="dashboard.php" class="text-indigo-400 hover:bg-indigo-300 text-sm transition">
-                                    Kembali
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Mobile Menu Button (Hamburger) -->
-                        <button id="mobileMenuButton"
-                            class="md:hidden text-gray-300 hover:text-white focus:outline-none p-2 rounded-lg hover:bg-gray-800 transition">
-                            <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 6h16M4 12h16M4 18h16"></path>
-                            </svg>
-                            <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                        </button>
-                    </div>
-
-                    <!-- Mobile Dropdown Menu (hidden by default) -->
-                    <div id="mobileMenu"
-                        class="hidden md:hidden border-t border-gray-800 py-4 space-y-3 transition-all duration-300">
-                        <!-- User Info Mobile -->
-                        <div class="flex items-center gap-3 px-2 py-2 bg-gray-800/50 rounded-lg">
-                            <div class="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center">
-                                <span class="text-indigo-400 text-sm font-medium">
-                                    <?= substr($_SESSION['username'], 0, 2) ?>
-                                </span>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-gray-200 text-sm font-medium">
-                                    <?= htmlspecialchars($_SESSION['username']) ?>
-                                </p>
-                                <p class="text-gray-500 text-xs">Online</p>
-                            </div>
-                        </div>
-
-                        <!-- Menu Items Mobile -->
-                        <a href="dashboard.php"
-                            class="flex items-center gap-3 px-4 py-3 text-indigo-500 hover:bg-gray-800 rounded-lg transition">
-                            <svg class="w-6 h-6" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd"
-                                    d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5" />
-                            </svg>
-                            <span>Kembali</span>
-                        </a>
-                        <a href="../logout.php"
-                            class="flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-gray-800 rounded-lg transition">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
-                                </path>
-                            </svg>
-                            <span>Logout</span>
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-
     <div id="card-data" class="max-w-2xl w-full mx-auto">
 
         <!-- header / brand section - dark mode version -->
@@ -268,8 +150,9 @@
                 <span class="inline-block w-2 h-2 rounded-full bg-amber-500"></span> Pengembalian tepat waktu
             </div>
         </div>
-
     </div>
+
+    <?php include("../../src/include/footer.php"); ?>
 
     <script src="../../src/js/navbar.js"></script>
     <script src="../../src/js/script.js"></script>

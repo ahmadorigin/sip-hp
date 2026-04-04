@@ -124,6 +124,8 @@
             </div>
         </div>
     </div>
+
+    <?php include("../src/include/footer.php"); ?>
 </body>
 
 </html>

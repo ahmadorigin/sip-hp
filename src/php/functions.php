@@ -53,18 +53,16 @@
             }
         }
 
-        $output = "";
-        $approved = false;
+        $status = "";
 
         if( intval(date("H")) > 21 ) {
-            $output = "ini sudah jam tidur!!!";
+            $status = "rejected";
         } else if($data["durasi-pinjam"] > 30) {
-            $output = "Durasi pinjam mu kelamaan!!";
+            $status = "rejected";
         } else if($filterKataAda === true) {
-            $output = "Selamat belajar dan ber-ibadah ";
-            $approved = true;
+            $status = "approved";
         } else {
-            $output = "Pending (menunggu persetujuan...) sabar dulu ya ";
+            $status = "pending";
         }
 
         // menambah data
@@ -73,8 +71,7 @@
             "peminjam" => $data["peminjam"],
             "durasi" => $data["durasi-pinjam"],
             "alasan" => $data["alasan"],
-            "status"   => $output, // Isinya: "Pending (menunggu persetujuan...)"
-            "approved" => $approved
+            "status"   => $status
         ];
 
         return $dataFilter;
