@@ -5,10 +5,11 @@
         header("Location: ../../index.php");
     }
 
-    $id = $_GET['id'];
+    $id = $_POST['id'];
 
     $data = [
-        "status" => "approved"
+        "pesan_admin" => $_POST["alasan"],
+        "status" => "rejected"
     ];
 
     s_query("PATCH", "/rest/v1/tb_peminjaman?id=eq." . $id, $data);

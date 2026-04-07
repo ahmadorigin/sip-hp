@@ -93,8 +93,7 @@
             "peminjam" => $dataFilter["peminjam"],
             "durasi" => $dataFilter["durasi"],
             "alasan" => $dataFilter["alasan"],
-            "status"   => $dataFilter["status"],
-            "approved" => $dataFilter["approved"]
+            "status"   => $dataFilter["status"]
         ];
 
         return s_query("PATCH", "/rest/v1/tb_peminjaman?id=eq." . $id, $dataUpdate);
@@ -200,4 +199,14 @@
         }
 
         return false;
+    }
+
+    function postAlasan($data) {
+        $id = $data["id"];
+        $alasan = $data["alasan"];
+
+        return s_query("PATCH", "/rest/v1/tb_peminjaman?id=eq." . $id, [
+            "status" => "rejected",
+            "pesan_admin" => $alasan
+        ]);
     }

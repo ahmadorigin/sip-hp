@@ -35,7 +35,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
 
 <?php if (isset($page_title)) : ?>
-
 <?php if($page_title === "form-izin") : ?>
 <header class="border-b border-gray-800 bg-gray-900/95 rounded-b-2xl backdrop-blur-sm sticky top-0 z-50">
     <div class="px-4 sm:px-6 lg:px-8">
@@ -61,7 +60,7 @@ input[type="number"]::-webkit-outer-spin-button {
                             <span class="text-gray-300 text-sm"><?= htmlspecialchars($_SESSION['username']) ?></span>
                             <a href="../logout.php"
                                 class="text-red-400 hover:text-red-300 text-sm transition">Logout</a>
-                            <a href="dashboard.php" class="text-indigo-400 hover:bg-indigo-300 text-sm transition">
+                            <a href="dashboard.php" class="text-indigo-400 hover:text-indigo-300 text-sm transition">
                                 Kembali
                             </a>
                         </div>
@@ -173,7 +172,7 @@ input[type="number"]::-webkit-outer-spin-button {
                             <a href="../logout.php"
                                 class="text-red-400 hover:text-red-300 text-sm transition">Logout</a>
 
-                            <a href="dashboard.php" class="text-indigo-400 hover:bg-indigo-300 text-sm transition">
+                            <a href="dashboard.php" class="text-indigo-400 hover:text-indigo-300 text-sm transition">
                                 Kembali
                             </a>
                         </div>
@@ -283,7 +282,7 @@ input[type="number"]::-webkit-outer-spin-button {
                             <span class="text-gray-300 text-sm"><?= htmlspecialchars($_SESSION['username']) ?></span>
                             <a href="../logout.php"
                                 class="text-red-400 hover:text-red-300 text-sm transition">Logout</a>
-                            <a href="panel-admin.php" class="text-indigo-400 hover:bg-indigo-300 text-sm transition">
+                            <a href="panel-admin.php" class="text-indigo-400 hover:text-indigo-300 text-sm transition">
                                 Panel Izin
                             </a>
                             <?php elseif($page_title === "dashboard-users") : ?>
@@ -295,7 +294,7 @@ input[type="number"]::-webkit-outer-spin-button {
                             <span class="text-gray-300 text-sm"><?= htmlspecialchars($_SESSION['username']) ?></span>
                             <a href="../logout.php"
                                 class="text-red-400 hover:text-red-300 text-sm transition">Logout</a>
-                            <a href="form-izin.php" class="text-indigo-400 hover:bg-indigo-300 text-sm transition">
+                            <a href="form-izin.php" class="text-indigo-400 hover:text-indigo-300 text-sm transition">
                                 Form Izin
                             </a>
                             <?php elseif($page_title === "panel-admin") : ?>

@@ -94,7 +94,7 @@
                         </svg>
                         Durasi pinjam (menit)
                     </label>
-                    <input type="number" name="durasi-pinjam" id="durasi-pinjam" required min="1" max="30" step="1"
+                    <input type="number" name="durasi-pinjam" id="durasi-pinjam" required min="1" step="1"
                         class="w-full px-5 py-3 border border-gray-700 rounded-xl focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 transition-all duration-200 bg-gray-800/50 hover:bg-gray-800 text-gray-100 placeholder-gray-500"
                         placeholder="menit (maksimal 30 menit)">
                     <p class="text-xs text-gray-500 ml-1">*maksimal 30 menit untuk kenyamanan bersama</p>

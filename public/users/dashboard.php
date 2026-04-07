@@ -1,5 +1,6 @@
 <?php
     session_start();
+    date_default_timezone_set('UTC');
     require '../../src/php/functions.php';
 
     if (!isset($_SESSION["login"])) {
@@ -8,6 +9,8 @@
 
     $peminjam = s_query("GET", "/rest/v1/tb_peminjaman?user_id=eq." . $_SESSION["id"]);
     $page_title = "dashboard-users";
+
+    
 
 ?>
 
@@ -19,6 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Sistem Peminjaman HP | SIP-HP</title>
     <link rel="stylesheet" href="../../src/css/output.css">
+    <link href="../../src/css/styles.css" rel="stylesheet">
 </head>
 
 <body class="bg-gray-950 ">

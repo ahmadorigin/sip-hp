@@ -116,7 +116,6 @@
             <form action="" method="post" class="p-6 md:p-8 space-y-6">
                 <input type="hidden" name="user_id" id="id" value="<?= $_SESSION["id"]; ?>">
                 <input type="hidden" name="status" value="<?= $row["status"]; ?>">
-                <input type="hidden" name="approved" value="<?= $row["approved"]; ?>">
 
                 <!-- Nama Peminjam field -->
                 <div class="space-y-2">
@@ -168,7 +167,6 @@
                         class="w-full px-5 py-3 border border-gray-700 rounded-xl focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 transition-all duration-200 bg-gray-800/50 hover:bg-gray-800 text-gray-100 placeholder-gray-500"
                         value="<?= htmlspecialchars($row["alasan"]); ?>">
                     <?php else : ?>
-
                     <input type="text" name="alasan" id="alasan" required
                         class="w-full px-5 py-3 border border-gray-700 rounded-xl focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 transition-all duration-200 bg-gray-800/50 hover:bg-gray-800 text-gray-100 placeholder-gray-500"
                         value="<?= htmlspecialchars($row["alasan"]); ?>">
@@ -207,9 +205,9 @@
                 Kembali ke Dashboard
             </a>
         </div>
+        <?php include("../src/include/footer.php"); ?>
     </div>
 
-    <?php include("../src/include/footer.php"); ?>
 </body>
 
 </html>

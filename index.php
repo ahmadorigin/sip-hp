@@ -8,11 +8,11 @@
     if (isset($_POST["submit"])) {
         
         if (verify($_POST)) {
-            
+
             $_SESSION["login"] = true;
             $_SESSION["username"] = $_POST["username"];
             $_SESSION["id"] = $_POST["id"];
-            
+
             $users = s_query("POST", "/rest/v1/tb_users?select=*");
             header("Location: ./public/users/dashboard.php");
         } else {
@@ -161,10 +161,6 @@
                         &times;
                     </button>
                 </div>
-
-                <?php if(isset($error)) : ?>
-                <p class="text-red-500 font-bold text-center italic">username / password salah</p>
-                <?php endif; ?>
 
                 <form method="post" class="passwordForm flex flex-col gap-4">
                     <label for="password" class="text-gray-300">Password</label>

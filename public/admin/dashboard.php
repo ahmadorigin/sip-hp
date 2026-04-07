@@ -19,6 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Sistem Peminjaman HP | SIP-HP</title>
     <link rel="stylesheet" href="../../src/css/output.css">
+    <link href="../../src/css/styles.css" rel="stylesheet">
 </head>
 
 <body class="bg-gray-950 ">
